@@ -1,75 +1,43 @@
 <template>
     <div class="content">
-        <el-row>
-            <el-col :span="5" style="padding: 8px; position:relative">
-                <el-input
-                        class="search-input"
-                        size="small"
-                        placeholder="搜索内容"
-                        prefix-icon="el-icon-search"
-                        v-model="search">
+        <el-row class="full-h">
+            <el-col class="full-h" :span="5" style="padding: 8px; position:relative">
+                <el-input class="search-input" size="small" placeholder="搜索内容" prefix-icon="el-icon-search"
+                          v-model="search">
                 </el-input>
-                <draggable class="list-group" v-model="groupArray" @start="drag=true" @end="drag=false">
-                    <div class="list-item" v-for="(item,index) in groupArray" :key="index">
-                        <div>
-                            <i class="el-icon-folder" :class="item.check?'active':''"></i>
-                            <span class="name" :class="item.check?'active':''">{{item.name}}</span>
-                        </div>
-                        <div>
-                            <span class="num" :class="item.check?'active':''">20/20</span>
-                        </div>
-                    </div>
-                </draggable>
-
+                <!-- 左边任务分组-->
+                <TaskGroup/>
+                <!-- 底部浮动的新增-->
                 <div class="float-box">
                     <div class="add">
                         <i class="el-icon-plus"></i>
                     </div>
                 </div>
-
+                <!-- 更多的设置 -->
                 <div class="float-set">
                     <i class="el-icon-more"/>
                 </div>
             </el-col>
-            <el-col :span="19" class="right-box">
-
+            <el-col :span="19" class="right-box full-h">
+                <TaskList/>
             </el-col>
         </el-row>
     </div>
 </template>
 
 <script>
-    import draggable from 'vuedraggable'
+    import TaskGroup from "../../components/TaskGroup";
+    import TaskList from "../../components/TaskList";
 
     export default {
         name: 'Home',
         components: {
-            draggable
+            TaskList,
+            TaskGroup
         },
         data() {
             return {
-                search: '',
-                groupArray: [{
-                    id: 1,
-                    name: '标题1',
-                    check: false
-                }, {
-                    id: 2,
-                    name: '标题2',
-                    check: true
-                }, {
-                    id: 3,
-                    name: '标题3',
-                    check: false
-                }, {
-                    id: 4,
-                    name: '标题4',
-                    check: false
-                }, {
-                    id: 5,
-                    name: '标题5',
-                    check: false
-                }]
+                search: ''
             }
         },
         mounted() {
@@ -81,47 +49,6 @@
     .search-input {
         height 20px
         margin-top 40px
-    }
-
-    .list-group {
-        width 100%
-        height 40px
-        margin-top 10px
-
-        .list-item {
-            display flex
-            flex-direction row
-            justify-content space-between
-            align-items center
-            padding-left 8px
-            padding-right 8px
-
-            div {
-                display flex
-                flex-direction row
-                align-items center
-
-                .icon {
-                    font-size 14px
-                    color #1A1A1A
-                }
-
-                .name {
-                    margin-left 8px
-                    font-size 16px
-                    color #1A1A1A
-                }
-
-                .num {
-                    font-size 8px
-                    color #7A7A7A
-                }
-
-                .active {
-                    color #0CB9FE
-                }
-            }
-        }
     }
 
     .float-set {
