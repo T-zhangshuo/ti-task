@@ -17,9 +17,9 @@
         </div>
         <!-- 下面的任务列表-->
         <div class="list-box" v-infinite-scroll="getTaskList" infinite-scroll-disabled="disabled">
-            <ul class="list">
-                <li v-for="(item,index) in taskList" class="list-item" :key="index">{{item.name}}</li>
-            </ul>
+            <div class="list">
+                <el-card v-for="(item,index) in taskList" class="list-item "shadow="hover" :key="index">{{item.name}}</el-card>
+            </div>
             <p v-if="loading" style="margin-top:10px;" class="loading">
                 <span><i class="el-icon-loading"/>加载中..</span>
             </p>
@@ -145,19 +145,15 @@
             width: 100%;
             margin: 0 auto;
             overflow-y: auto;
-
+            display flex
+            flex-direction column
+            justify-content center
+            align-items center
             .list-item {
-                width: 100%;
-                display: block;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-                list-style: none;
-                padding: 0 1rem;
-                box-sizing: border-box;
-                height: 70px;
-                line-height: 70px;
-                border-bottom: 1px solid #e7e7e7;
+                width auto
+                margin-left 16px
+                margin-right 16px
+                margin-top 8px
             }
         }
 
