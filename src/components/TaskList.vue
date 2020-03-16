@@ -1,5 +1,5 @@
 <template>
-    <div class="content" style="background-color: #FAFAFA">
+    <div class="content" style="background-color: #FAFAFA;">
         <!--顶部的标题布局-->
         <div class="title-top">
             <!--分组的标题-->
@@ -140,7 +140,7 @@
 
     .list-box {
         width 100%
-        height 450px
+        height 474px
         display flex
         flex-direction column
 
