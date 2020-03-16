@@ -16,14 +16,17 @@
             </div>
         </div>
         <!-- 下面的任务列表-->
-        <div class="list-box" v-infinite-scroll="getTaskList" infinite-scroll-disabled="disabled">
-            <ul class="list">
-                <li v-for="(item,index) in taskList" class="list-item" :key="index">{{item.name}}</li>
-            </ul>
+        <div class="list-box">
+            <div class="infinite-list list" v-infinite-scroll="getTaskList" style="overflow:auto">
+                <el-card class="infinite-list-item list-item" v-for="(item,index) in taskList" :key="index">
+                    {{item.name}}
+                </el-card>
+            </div>
             <p v-if="loading" style="margin-top:10px;" class="loading">
                 <span><i class="el-icon-loading"/>加载中..</span>
             </p>
         </div>
+
         <!--底部的输入-->
         <div class="foot-box">
             <i class="el-icon-plus"/>
@@ -66,11 +69,11 @@
                     for (let i = 0; i < 10; i++) {
                         let value = this.count * 10 + i + "啊";
                         this.taskList.push({
-                            item: value
+                            name: value
                         })
                     }
                     this.count++;
-                    // this.loading = false;
+                    this.loading = false;
                 }, 2000)
             }
         }
@@ -88,35 +91,35 @@
         align-items center
 
         .left {
-            height: 30px;
-            position: relative;
+            height 30px
+            position relative
 
             input {
-                background-color rgba(0,0,0,0)
-                border: none;
-                outline: none;
-                font-size: 24px;
-                caret-color: #0CB9FE;
+                background-color rgba(0, 0, 0, 0)
+                border none
+                outline none
+                font-size 24px
+                caret-color #0CB9FE
                 color #1A1A1A
             }
 
             .line-box {
-                position: absolute;
-                left: 10px;
-                bottom: -8px;
-                height: 1px;
-                background-color: #FFFFFF;
+                position absolute
+                left 10px
+                bottom -8px
+                height 1px
+                background-color #FFFFFF
 
                 .line {
-                    width: 0px;
-                    height: 100%;
-                    background-color: #0CB9FE;
-                    transition: width 0.3s;
+                    width 0px
+                    height 100%
+                    background-color #0CB9FE
+                    transition width 0.3s
 
                     &.active {
-                        width: 204px;
-                        height: 100%;
-                        transition: width 0.4s;
+                        width 204px
+                        height 100%
+                        transition width 0.4s
                     }
                 }
             }
@@ -141,23 +144,28 @@
         display flex
         flex-direction column
 
+        ul {
+            margin 0
+            padding 0
+
+            li {
+                margin 0
+                padding 0
+            }
+        }
+
         .list {
-            width: 100%;
-            margin: 0 auto;
-            overflow-y: auto;
+            width 100%
+            margin 0 auto
+            overflow-y auto
+            display flex
+            flex-direction row
+            flex-wrap wrap
+            justify-content space-evenly
 
             .list-item {
-                width: 100%;
-                display: block;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-                list-style: none;
-                padding: 0 1rem;
-                box-sizing: border-box;
-                height: 70px;
-                line-height: 70px;
-                border-bottom: 1px solid #e7e7e7;
+                width 45%
+                margin-bottom 16px
             }
         }
 
@@ -177,6 +185,7 @@
     .foot-box {
         height 50px
         margin-right 16px
+        margin-left 16px
         background-color rgba(200, 200, 200, 0.4)
         border-radius 8px
         display flex
@@ -184,19 +193,30 @@
         align-items center
         padding-left 16px
         padding-right 16px
-        i{
+
+        i {
             font-size 18px
             color #0CB9FE
         }
+
         input {
             background-color rgba(0, 0, 0, 0)
-            border: none;
-            outline: none;
-            font-size: 16px;
-            caret-color: #0CB9FE;
+            border none
+            outline none
+            font-size 16px
+            caret-color #0CB9FE
             color #0CB9FE
+
         }
 
+    }
+
+    .el-input {
+        .el-input__count {
+            .el-input__count-inner {
+                background rgba(0, 0, 0, 0)
+            }
+        }
     }
 
 </style>
